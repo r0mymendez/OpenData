@@ -14,11 +14,11 @@ La API del DENUE te permite consultar datos de identificación, ubicación, acti
 
 ---
 
-## Codigo
+## Codigo
 
 Tipo de Archivo | Url 
 ---|---
-**🐍Notebook en Python** | https://github.com/r0mymendez/OpenData/blob/main/Mx/OpenDataMexico.ipynb
-**® Notebook en R ** | https://github.com/r0mymendez/OpenData/blob/main/Mx/OpenDataMexico.Rmd
-**📁csv** | https://github.com/r0mymendez/OpenData/blob/main/Mx/comercios_mx.csv.zip
+**🐍Notebook en Python** | [OpenDataMexico.ipynb](https://github.com/r0mymendez/OpenData/blob/main/Mx/OpenDataMexico.ipynb)
+**® Notebook en R** | [OpenDataMexico.Rmd](https://github.com/r0mymendez/OpenData/blob/main/Mx/OpenDataMexico.Rmd)
+**📁csv** | [comercios_mx.csv.zip](https://github.com/r0mymendez/OpenData/blob/main/Mx/comercios_mx.csv.zip)
 
