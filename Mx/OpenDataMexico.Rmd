@@ -1,0 +1,100 @@
+---
+title: ""
+output: html_notebook
+---
+
+## 📊 INEGI
+
+El Instituto Nacional de Estadística, Geografía e Informática **(INEGI)** es un organismo público autónomo responsable de normar y coordinar el Sistema Nacional de Información Estadística y Geográfica, así como de captar y difundir información de México en cuanto al territorio, los recursos, la población y economía, que permita dar a conocer las características de nuestro país y ayudar a la toma de decisiones. 
+
+> Para más información: [link](https://www.inegi.org.mx/inegi/quienes_somos.html)
+
+
+<center>
+<img src="https://i.ibb.co/xsTY3jk/Captura-de-Pantalla-2021-01-03-a-la-s-16-21-53.png" alt="Captura-de-Pantalla-2021-01-03-a-la-s-16-21-53" border="0">
+
+## 🛍️ API del **DENUE**
+La API del DENUE te permite consultar datos de identificación, ubicación, actividad económica y tamaño de más de 5 millones de establecimientos a nivel nacional, por entidad federativa y municipio. Puedes utilizar la API para crear aplicaciones que muestren la información directamente de las bases de datos del INEGI en el preciso momento en que se actualiza.
+
+1️⃣ Importar los paquetes que vamos a utilizar
+
+```{r paquetes}
+library(httr)
+library(jsonlite)
+library(tidyverse)
+```
+
+2️⃣ Crear una variable con el token, para poder obtener este token es necesario solicitarla en el siguiente [link](https://www.inegi.org.mx/servicios/api_denue.html#)
+
+```{r token}
+token='aaaaaa-aaa-aaa-aa-aaaaaaa'
+```
+
+3️⃣ Busqueda de un comercio por la denominación de su Razon Social, por ejemplo `MARRIOTT`
+```{r  Denominación de su Razon Social}
+# Parametros
+RazonSocial='MARRIOTT'
+CveEnt='01'
+PosIni='0'
+PosFin='10'
+
+# Genero la URL
+url=paste0('https://www.inegi.org.mx/app/api/denue/v1/consulta/nombre/',
+           RazonSocial,'/',CveEnt,'/',PosIni,'/',PosFin,'/',token)
+
+# GET
+request=GET(url)
+
+# Valido el status_code
+if(request$status_code==200){
+  # Generar un dataframe a partir de los datos del json
+  datos=content(request, as = "text", encoding = "UTF-8")
+  datos=fromJSON(datos) %>% data.frame()
+}
+
+# Datos obtenidos
+print(paste0('La cantidad de filas es: ',nrow(datos), ' la cantidad de columnas: ',ncol(datos)))
+```
+
+```{r}
+print(datos)
+```
+
+4️⃣ Buscar datos por tipo de establecimiento:
+
+ * **Condición**: Palabra(s) a buscar dentro del nombre del establecimiento, razón social, calle, colonia, clase de la actividad económica, entidad federativa, municipio y localidad.
+Para buscar todos los establecimientos se deberá ingresar la palabra "todos".
+* **Entidad federativa**: Clave de dos dígitos de la entidad federativa (01 a 32). Para incluir todas las entidades se especifica 00.
+* **Registro inicial**: Número de registro a partir del cuál se mostrarán los resultados de la búsqueda.
+* **Registro final**: Número de registro final que se mostrará en los resultados de la búsqueda.
+* **Token**: Número único que permite hacer consultas, el cual se puede obtener al registrarse [aquí](https://www.inegi.org.mx/servicios/api_denue.html#)
+
+```{r}
+# Parametros
+Condicion='restaurant'
+EntFed='00'
+RegIni='0'
+RegFin='10'
+
+# Genero la URL
+url=paste0('https://www.inegi.org.mx/app/api/denue/v1/consulta/BuscarEntidad/',
+           Condicion,'/',EntFed,'/',RegIni,'/',RegFin,'/',token)
+
+# GET
+request=GET(url)
+
+# Valido el status_code
+if(request$status_code==200){
+  # Generar un dataframe a partir de los datos del json
+  datos=content(request, as = "text", encoding = "UTF-8")
+  datos=fromJSON(datos) %>% data.frame()
+}
+
+# Datos obtenidos
+print(paste0('La cantidad de filas es: ',nrow(datos), ' la cantidad de columnas: ',ncol(datos)))
+
+```
+```{r}
+print(datos)
+```
+
