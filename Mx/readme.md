@@ -11,3 +11,14 @@ El Instituto Nacional de Estadística, Geografía e Informática **(INEGI)** es 
 
 ## 🛍️ API del **DENUE**
 La API del DENUE te permite consultar datos de identificación, ubicación, actividad económica y tamaño de más de 5 millones de establecimientos a nivel nacional, por entidad federativa y municipio. Puedes utilizar la API para crear aplicaciones que muestren la información directamente de las bases de datos del INEGI en el preciso momento en que se actualiza.
+
+---
+
+## Codigo
+
+Tipo de Archivo | Url 
+---|---
+**🐍Notebook en Python** | https://github.com/r0mymendez/OpenData/blob/main/Mx/OpenDataMexico.ipynb
+**® Notebook en R ** | https://github.com/r0mymendez/OpenData/blob/main/Mx/OpenDataMexico.Rmd
+**📁csv** | https://github.com/r0mymendez/OpenData/blob/main/Mx/comercios_mx.csv.zip
+
